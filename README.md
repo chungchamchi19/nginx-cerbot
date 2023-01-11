@@ -1,26 +1,25 @@
 # Introduction
 
-This is setup ssl with nginx and docker-compose.
+This is setup ssl for localhost with nginx and docker-compose.
 
 Happy coding!
 
-# Setup
-- Change `server_name` information in `data/nginx/app.conf`
-
-- Change `domain_name` and `email` information in `init-letsencrypt.sh`
-
-- Bash enscrypt:
+# Create certificate
+- Move to data/nginx:
 
 ```
-chmod +x init-letsencrypt.sh
+cd data/nginx
 ```
 
+- To create certificate for localhost, run: 
+
 ```
-sudo ./init-letsencrypt.sh
+sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout nginx-selfsigned.key -out nginx-selfsigned.crt
 ```
 
 # Start
-- To start nginx and certbot, run:
+
+- Back to root folder and start nginx and ssl for localhost, run:
 
 ```
 docker-compose up
